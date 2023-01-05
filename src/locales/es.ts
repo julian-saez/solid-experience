@@ -55,6 +55,7 @@ const app: I18nLocales = {
     a_enter_type: 'Ingresar Tipo',
     a_enter_value: 'Ingresar valor',
     a_es: 'Español',
+    a_files: 'Galeria',
     a_filter_by: 'Filtrar por',
     a_filter_field: 'Campo de filtro',
     a_filter: 'Filtrar',
@@ -225,6 +226,11 @@ const roles: I18nLocales = {
     r_updated: 'Rol Actualizado',
 };
 
+const file: I18nLocales = {
+    f_list: 'Listado de archivos',
+    f_upload: 'Subir archivo',
+}
+
 const user: I18nLocales = {
     u_assigned: 'Usuario/s asignados',
     u_create: 'Crear Usuario',
@@ -248,6 +254,7 @@ const es: I18nLocales = {
     ...errors,
     ...properties,
     ...roles,
+    ...file,
     ...user,
 };
 

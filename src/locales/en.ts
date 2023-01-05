@@ -26,6 +26,7 @@ const app: I18nLocales = {
     a_enter_slug: 'Enter Slug',
     a_do_not_have_account: 'Do you have an account?',
     a_es: 'Spanish',
+    a_files: 'Gallery',
     a_filter_by: 'Filter by',
     a_filter_field: 'Filter field',
     a_filter: 'Filter',
@@ -151,6 +152,11 @@ const roles: I18nLocales = {
     r_updated: 'Role Updated',
 };
 
+const file: I18nLocales = {
+    f_list: 'File List',
+    f_upload: 'Upload file',
+}
+
 const user: I18nLocales = {
     u_assigned: 'User/s assigned',
     u_create: 'Create User',
@@ -173,6 +179,7 @@ const en: I18nLocales = {
     ...entities,
     ...errors,
     ...properties,
+    ...file,
     ...roles,
     ...user,
 };

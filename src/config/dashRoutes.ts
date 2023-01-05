@@ -162,6 +162,14 @@ export const dashRoutes = [
         path: '/*all',
         component: lazy( () => import( '../pages/error/Custom404/Custom404' ) ),
     },
+    {
+        path: '/files',
+        component: lazy( () => import( '../pages/files' ) ),
+        name: 'a_files',
+        icon: IconDashboard,
+        showItem: true,
+        permission: 'Dashboard',
+    },
 ];
 
 // export const dashRoutes = [
