@@ -3,18 +3,18 @@ import UserRepository from '../../../features/user/repositories/UserRepository';
 import { LoginApi } from '../../../features/auth/interfaces/login';
 
 type params = {
-    userRepository: UserRepository;
+    abstractRepository: any;
     user: LoginApi;
     setError: ( error: undefined ) => string;
     refetch: ( info?: unknown ) => void;
     t: any;
 };
 
-export const removeUserAction = ( { userRepository, user, setError, refetch, t }: params ) => async ( id: string ) =>
+export const removeUserAction = ( { abstractRepository, user, setError, refetch, t }: params ) => async ( id: string ) =>
 {
     try
     {
-        void await userRepository.removeUser( { id, user } );
+        void await abstractRepository.handle( { user, method: 'DELETE', url: 'users', id } );
 
         notificationService.show( {
             status: 'success',

@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { RoleListResponse, RolePayload, RoleResponse } from '../interfaces';
-import { config } from '../../shared/repositories/config';
+import { config } from '../../shared/repositories/config/config';
 import HttpService from '../../../services/HttpService';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
 

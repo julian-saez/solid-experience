@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { config } from '../../shared/repositories/config';
+import { config } from '../../shared/repositories/config/config';
 import { RegisterPayload, RegisterResponse } from '../register/interfaces/createAccount';
 import { ChangeForgotPasswordPayload, ForgotPasswordPayload } from '../interfaces/forgotPassword';
 import { LoginPayload, LoginResponse } from '../interfaces/login';

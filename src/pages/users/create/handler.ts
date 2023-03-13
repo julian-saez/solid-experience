@@ -3,22 +3,22 @@ import UserRepository from '../../../features/user/repositories/UserRepository';
 import { LoginApi } from '../../../features/auth/interfaces/login';
 
 type params = {
-    userRepository: UserRepository;
+    abstractRepository: any;
     user: LoginApi;
 };
 
-export const createAction = ( { userRepository, user }: params ) => async ( data: UserPayload ) =>
+export const createAction = ( { abstractRepository, user }: params ) => async ( data: UserPayload ) =>
 {
     const rolesSelected = {
         rolesId: Array.from( data.roles as [] ),
     };
 
     delete data.roles;
-    const response = await userRepository.createUser( { data, user } );
+    const response = await abstractRepository.handle( { user, method: 'POST', url: 'users', data } );
 
     if ( rolesSelected )
     {
         const { id } = response.data;
-        void await userRepository.assignUserRole( { id, data: rolesSelected, user } );
+        void await abstractRepository.handle( { user, method: 'PUT', url: 'users', data: rolesSelected, id } );
     }
 };

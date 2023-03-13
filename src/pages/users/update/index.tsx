@@ -8,6 +8,7 @@ import PrivateLayout from '../../../features/shared/layout/PrivateLayout/Private
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserUpdate from '../../../features/user/templates/UserUpdate/UserUpdate';
 import { updateAction } from './handlers';
+import AbstractRepository from '../../../features/shared/repositories/AbstractRepository';
 
 const IndexPage: Component = () =>
 {
@@ -16,8 +17,9 @@ const IndexPage: Component = () =>
     const authRepository = new AuthRepository();
     const roleRepository = new RoleRepository();
     const userRepository = new UserRepository();
+    const abstractRepository = new AbstractRepository();
 
-    const [ userSelected ] = createResource( { id, user: user() }, userRepository.getOne );
+    const [ userSelected ] = createResource( { user: user(), url: 'users', id }, abstractRepository.handle );
     const [ roles ] = createResource( { user: user() }, roleRepository.getRoles );
     const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
     usePermission( user, [ roles, permissions, userSelected ] );
@@ -27,7 +29,7 @@ const IndexPage: Component = () =>
     return (
         <PrivateLayout>
             <UserUpdate
-                onUpdate={updateAction( { userRepository, id, user: user() } )}
+                onUpdate={updateAction( { abstractRepository, id, user: user() } )}
                 userSelected={userSelected()?.data}
                 permissionsList={permissions()?.data}
                 rolesList={roles()?.data}

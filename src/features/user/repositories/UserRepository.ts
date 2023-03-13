@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { UserPayload, UserListResponse, UserResponse } from '../interfaces';
-import { config } from '../../shared/repositories/config';
+import { config } from '../../shared/repositories/config/config';
 import HttpService from '../../../services/HttpService';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
 

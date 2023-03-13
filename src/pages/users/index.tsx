@@ -12,17 +12,18 @@ import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors
 import { useI18n } from 'solid-i18n';
 import { UserApi, UserListResponse } from '../../features/user/interfaces';
 import UserList from '../../features/user/templates/UserList/UserList';
+import AbstractRepository from '../../features/shared/repositories/AbstractRepository';
 
 const IndexPage: Component = () =>
 {
     const { t } = useI18n();
     const { errorData, setError } = createAlert();
     const [ user ]: any = useApplicationContext();
-    const userRepository = new UserRepository();
+    const abstractRepository = new AbstractRepository();
 
     const { goToPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
 
-    const [ users, { refetch } ] = createResource( { queryParams: getURLSearchParams(), user: user() }, userRepository.getUsers );
+    const [ users, { refetch } ] = createResource( { queryParams: getURLSearchParams(), user: user(), method: 'GET', url: 'users' }, abstractRepository.handle );
     const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<UserApi, UserListResponse>( users );
 
     usePermission( user, [ users ] );
@@ -40,7 +41,7 @@ const IndexPage: Component = () =>
             <AlertErrors errorData={errorData} title="err" description="err_process_user"/>
             <UserList
                 userList={userList()}
-                removeAction={removeUserAction( { userRepository, user: user(), setError, refetch, t } )}
+                removeAction={removeUserAction( { abstractRepository, user: user(), setError, refetch, t } )}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}
                 nextPage={paginationData()?.nextUrl}

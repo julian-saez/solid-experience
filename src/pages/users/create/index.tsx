@@ -7,12 +7,13 @@ import PrivateLayout from '../../../features/shared/layout/PrivateLayout/Private
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserCreate from '../../../features/user/templates/UserCreate/UserCreate';
 import { createAction } from './handler';
+import AbstractRepository from '../../../features/shared/repositories/AbstractRepository';
 
 const IndexPage: Component = () =>
 {
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository();
-    const userRepository = new UserRepository();
+    const abstractRepository = new AbstractRepository();
     const roleRepository = new RoleRepository();
 
     const [ roles ] = createResource( { user: user() }, roleRepository.getRoles );
@@ -22,7 +23,7 @@ const IndexPage: Component = () =>
     return (
         <PrivateLayout>
             <UserCreate
-                onCreate={createAction( { userRepository, user: user() } )}
+                onCreate={createAction( { abstractRepository, user: user() } )}
                 permissionsList={permissions()?.data}
                 rolesList={roles()?.data}
                 loading={permissions.loading || roles.loading}
