@@ -2,7 +2,8 @@ import PayloadProps from '../interfaces/PayloadProps';
 import { AxiosRequestConfig } from 'axios';
 import HttpService from '../../../../services/HttpService';
 
-class GetUseCase {
+class GetHandler
+{
     public handle ( { queryParams, user, url }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
@@ -14,4 +15,4 @@ class GetUseCase {
     }
 }
 
-export default GetUseCase;
+export default GetHandler;

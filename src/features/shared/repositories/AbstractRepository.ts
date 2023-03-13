@@ -1,10 +1,10 @@
 import MethodEnum from './enum/MethodEnum';
 import PayloadProps from './interfaces/PayloadProps';
-import GetUseCase from './useCases/getUseCase';
+import GetHandler from './handlers/getHandler';
 import { BACKEND_BASE_PATH, config } from './config/config';
-import DeleteUseCase from './useCases/deleteUseCase';
-import CreateUseCase from './useCases/createUseCase';
-import UpdateUseCase from './useCases/updateUseCase';
+import DeleteHandler from './handlers/deleteHandler';
+import CreateHandler from './handlers/createHandler';
+import UpdateHandler from './handlers/updateHandler';
 const { baseUrl } = config.apiGateway.server;
 
 class AbstractRepository {
@@ -14,25 +14,25 @@ class AbstractRepository {
         if( id ) URL += `/${id}`;
 
         if( method === MethodEnum.GET ) {
-            const getUseCase = new GetUseCase();
+            const getUseCase = new GetHandler();
 
             return getUseCase.handle( { queryParams, user, url: URL } );
         }
 
         if( method === MethodEnum.POST ) {
-            const createUseCase = new CreateUseCase();
+            const createUseCase = new CreateHandler();
 
             return createUseCase.handle(  { data, user, url: URL } )
         }
 
         if( method === MethodEnum.PUT ) {
-            const updateUseCase = new UpdateUseCase();
+            const updateUseCase = new UpdateHandler();
 
             return updateUseCase.handle( { data, user, url: URL } );
         }
 
         if( method === MethodEnum.DELETE ) {
-            const deleteUseCase = new DeleteUseCase();
+            const deleteUseCase = new DeleteHandler();
 
             return deleteUseCase.handle( { user, url: URL } );
         }

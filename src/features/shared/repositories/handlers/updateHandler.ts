@@ -2,7 +2,8 @@ import PayloadProps from '../interfaces/PayloadProps';
 import { AxiosRequestConfig } from 'axios';
 import HttpService from '../../../../services/HttpService';
 
-class UpdateUseCase {
+class UpdateHandler
+{
     public handle ( { user, url, data }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
@@ -15,4 +16,4 @@ class UpdateUseCase {
     }
 }
 
-export default UpdateUseCase;
+export default UpdateHandler;
